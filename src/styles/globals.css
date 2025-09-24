@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray5: #fcfcfd
+  --gray8: #f6f7f9;
+  --gray10: #f0f1f4;
+  --gray15: #e5e7ea;
+  --gray20: #dadde0;
+  --gray30: #c9cdd2;
+  --gray40: #b2b8be;
+  --gray50: #99a1a8;
+  --gray60: #757d86;
+  --gray70: #50585f;
+  --gray80: #3a3e45;
+  --gray85: #292c33;
+  --gray90: #21242a;
+  --gray100: #131518;
+  --green: #9ac75b;
+  --green20: #d2f096;
+  --green50: #82dc28;
+  --green70: #5fbe00;
+  --green90: #54a800;
+  --coral: #ff5753;
+  --pink: #e95294;
+  --blue: #007aff;
+  --red: #f81542;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --white: #131518;
+    --black: #666;
+    --gray5: #21242a;
+    --gray10: #3a3e45;
+    --gray15: #1a1815;
+    --gray20: #50585f;
+    --gray30: #757d86;
+    --gray40: #99a1a8;
+    --gray50: #b2b8be;
+    --gray60: #c9cdd2;
+    --gray70: #dadde0;
+    --gray80: #f0f1f4;
+    --gray90: #fcfcfd;
+    --gray100: #fff;
+    --green: #b1cf66;
+    --coral: #ee6e6b;
+    --pink: #e56fa2;
+    --blue: #439af8;
+    --red: #ee4557;
+  }
+}
+
+/* body {
+  font-family: Arial; Helvetica; sans-serif;
+} */
+
+/* 커스텀 클래스명 패턴 필요시 사용
+@theme inline {} */

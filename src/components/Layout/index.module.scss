@@ -1,0 +1,74 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+
+  &.nopt .content {
+    padding-top: 0;
+  }
+
+  &.nopb .content {
+    padding-bottom: 0;
+  }
+
+  &.flex .content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.layout * {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Noto Sans", Roboto, Montserrat, sans-serif !important;
+  user-select: none;
+}
+
+.layout button {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.content {
+  flex: 1;
+  padding: 32px 15px 50px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overflow-anchor: none;
+}
+
+.btn-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 80px;
+  height: 40px;
+  margin-right: 6px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.content-btn {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 0 15px calc(15px + env(safe-area-inset-bottom));
+  gap: 12px;
+  background-color: var(--white);
+}
+
+// .hidden {
+//   .content {
+//     height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+//     margin-top: 0;
+//   }
+// }

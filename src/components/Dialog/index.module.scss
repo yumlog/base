@@ -1,0 +1,217 @@
+.dialog-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.backdrop {
+  position: fixed;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  background-color: rgb(0 0 0 / 70%);
+  inset: 0;
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: var(--white);
+}
+
+.dialog.fullscreen {
+  inset: 0;
+  height: 100svh;
+
+  &.border {
+    .dialog-header {
+      box-shadow: inset 0 -0.5px 0 var(--gray20);
+    }
+  }
+
+  .dialog-header {
+    position: relative;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+
+    h2 {
+      font-size: 16px;
+    }
+
+    button {
+      position: absolute;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translateY(-50%);
+    }
+
+    .back-btn {
+      left: 6px;
+    }
+
+    .close-btn,
+    .info-btn {
+      right: 6px;
+    }
+  }
+
+  .dialog-content {
+    padding: 32px 15px 104px;
+  }
+
+  .dialog-btn {
+    padding: 0 15px calc(15px + env(safe-area-inset-bottom));
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    .dialog-content {
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+.dialog.bottomsheet {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-height: 80svh;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  border-radius: 18px 18px 0 0;
+
+  &.open {
+    transform: translateY(0);
+  }
+
+  .dialog-header {
+    justify-content: space-between;
+    gap: 12px;
+    padding: 19px 15px;
+
+    h2 {
+      flex: 1;
+      font-size: 18px;
+    }
+
+    button {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .dialog-content {
+    padding: 8px 15px 32px;
+
+    &.scroll {
+      padding-bottom: 64px;
+    }
+  }
+}
+
+.dialog.nopt {
+  .dialog-content {
+    padding-top: 0;
+  }
+}
+
+.dialog.nopb {
+  .dialog-content {
+    padding-bottom: 0;
+  }
+}
+
+.dialog.flex {
+  .dialog-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
+
+.dialog-header {
+  display: flex;
+  flex-shrink: 0;
+
+  h2 {
+    border-color: var(--gray100);
+    font-weight: 700;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.close-btn {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 26px;
+}
+
+.dialog-content {
+  flex-grow: 1;
+  overflow: hidden auto;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.dialog-content.scroll:has(+ .dialog-btn) {
+  .dialog-content {
+    padding-bottom: 82px;
+  }
+}
+
+.dialog-content.scroll + .dialog-btn {
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 65px;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    background: linear-gradient(
+      to bottom,
+      rgb(255 255 255 / 0%) 0%,
+      rgb(255 255 255 / 100%) 100%
+    );
+  }
+}
+
+.dialog-btn {
+  display: flex;
+  align-items: center;
+  padding: 0 15px 15px;
+  gap: 8px;
+
+  button {
+    flex: 1;
+  }
+
+  &.col {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+
+    button {
+      flex: none;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@keyframes floating-animation {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  padding: 10px 12px;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 4px;
+  opacity: 0;
+  background-color: var(--gray80);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 400;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    border-width: 6px;
+    border-style: solid;
+  }
+
+  &.top {
+    transform-origin: bottom center;
+
+    &::after {
+      top: 100%;
+      border-color: var(--gray80) transparent transparent;
+    }
+  }
+
+  &.bottom {
+    transform-origin: top center;
+
+    &::after {
+      bottom: 100%;
+      border-color: transparent transparent var(--gray80);
+    }
+  }
+
+  &.left::after {
+    left: 10px;
+  }
+
+  &.center::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.right::after {
+    right: 10px;
+  }
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}
+
+.floating {
+  animation: 2s ease-in-out infinite floating-animation;
+}

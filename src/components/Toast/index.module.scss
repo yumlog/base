@@ -1,0 +1,51 @@
+.toast {
+  --tabbar-h: 50px;
+
+  display: flex;
+  position: fixed;
+  z-index: 2000;
+  bottom: calc(var(--tabbar-h) + 15px);
+  left: 50%;
+  align-items: center;
+  width: calc(100% - 70px);
+  padding: 15px 20px;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 4px;
+  opacity: 0;
+  background-color: rgb(0 0 0 / 80%);
+  gap: 15px;
+  will-change: opacity;
+
+  p {
+    flex: 1;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+
+    &:has(+ button) {
+      text-align: left;
+    }
+  }
+
+  button {
+    flex-shrink: 0;
+    color: var(--green50);
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+.toast.small {
+  width: max-content;
+  padding: 10px 20px;
+}
+
+.show {
+  opacity: 1;
+}
+
+.hide {
+  opacity: 0;
+}

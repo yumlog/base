@@ -1,0 +1,43 @@
+.top-btn {
+  --tabbar-h: 50px;
+
+  display: flex;
+  position: fixed;
+  z-index: 2000;
+  right: 15px;
+  bottom: calc(15px + env(safe-area-inset-bottom));
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  transition: all 0.3s ease;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 100%;
+  border-color: var(--gray20);
+  opacity: 0;
+  background-color: var(--white);
+  aspect-ratio: 1 / 1;
+
+  // transform: scale(0.8);
+
+  &.show {
+    // transform: scale(1);
+    opacity: 1;
+  }
+
+  &.has {
+    bottom: calc(15px + var(--tabbar-h) + env(safe-area-inset-bottom));
+  }
+
+  > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap;
+  }
+}
