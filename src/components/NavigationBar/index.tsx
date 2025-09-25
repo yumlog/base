@@ -64,13 +64,10 @@ const NavigationBar = ({
           <button aria-label="히스토리">
             <Image src={HistoryIcon} alt="" width={22} height={22} />
           </button>
-          <button
-            aria-label="홈"
-            onClick={() => (window.location.href = "/m/mtn/jindan")}
-          >
+          <button aria-label="홈">
             <Image src={HomeIcon} alt="" width={22} height={22} />
           </button>
-          {/* <button aria-label="설정" onClick={() => (window.location.href = "/m/mtn/jindan/setting")}>
+          {/* <button aria-label="설정">
             <Image src={SettingIcon} alt="" width={22} height={22} />
           </button> */}
         </div>

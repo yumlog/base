@@ -65,7 +65,7 @@ const TabBar = ({ scrollTarget, onVisibleChange }: TabBarProps) => {
         </button>
         <button className={cx("tab-bar-item")}>
           <Image src={StoreIcon} alt="" width={20} height={20} />
-          <span>올영매장</span>
+          <span>위치</span>
         </button>
         <button className={cx("tab-bar-item")}>
           <Image src={LikeIcon} alt="" width={20} height={20} />

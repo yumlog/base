@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/fonts.css";
 
 import type { Metadata } from "next";
 
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Layout>{children}</Layout>
+        <Layout title="base">{children}</Layout>
       </body>
     </html>
   );
