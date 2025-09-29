@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { CSSProperties } from "react";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -82,7 +81,7 @@ const Tabs: React.FC<TabsProps> = ({
                   onClick={() => setDialogOpen(true)}
                 >
                   {sortOptions[sortIndex]}
-                  <Image src={DownIcon} alt="" width={12} height={12} />
+                  <DownIcon width={12} height={12} />
                 </button>
                 <Dialog
                   title={sortTitle}
@@ -98,12 +97,7 @@ const Tabs: React.FC<TabsProps> = ({
                       >
                         <span className={cx("option")}>{option}</span>
                         {sortIndex === idx && (
-                          <Image
-                            src={CheckIcon}
-                            alt=""
-                            width={24}
-                            height={24}
-                          />
+                          <CheckIcon width={24} height={24} />
                         )}
                       </li>
                     ))}

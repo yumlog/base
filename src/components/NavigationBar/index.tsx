@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -56,19 +55,19 @@ const NavigationBar = ({
       <div className={cx("navigation-bar")}>
         <div className={cx("btn-wrap", "left")}>
           <button aria-label="뒤로가기" onClick={() => window.history.go(-1)}>
-            <Image src={BackIcon} alt="" width={22} height={22} />
+            <BackIcon width={22} height={22} />
           </button>
         </div>
         <h1 className={cx("title")}>{title}</h1>
         <div className={cx("btn-wrap", "right")}>
           <button aria-label="히스토리">
-            <Image src={HistoryIcon} alt="" width={22} height={22} />
+            <HistoryIcon width={22} height={22} />
           </button>
           <button aria-label="홈">
-            <Image src={HomeIcon} alt="" width={22} height={22} />
+            <HomeIcon width={22} height={22} />
           </button>
           {/* <button aria-label="설정">
-            <Image src={SettingIcon} alt="" width={22} height={22} />
+            <SettingIcon width={22} height={22} />
           </button> */}
         </div>
       </div>

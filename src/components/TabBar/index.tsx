@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -52,27 +51,27 @@ const TabBar = ({ scrollTarget, onVisibleChange }: TabBarProps) => {
     <footer className={cx("tab-bar-wrap", { hidden })}>
       <nav className={cx("tab-bar")}>
         <button className={cx("tab-bar-item")}>
-          <Image src={HomeIcon} alt="" width={20} height={20} />
+          <HomeIcon width={20} height={20} />
           <span>홈</span>
         </button>
         <button className={cx("tab-bar-item")}>
-          <Image src={CategoryIcon} alt="" width={20} height={20} />
+          <CategoryIcon width={20} height={20} />
           <span>카테고리</span>
         </button>
         <button className={cx("tab-bar-item")}>
-          <Image src={FindIcon} alt="" width={20} height={20} />
+          <FindIcon width={20} height={20} />
           <span>발견</span>
         </button>
         <button className={cx("tab-bar-item")}>
-          <Image src={StoreIcon} alt="" width={20} height={20} />
+          <StoreIcon width={20} height={20} />
           <span>위치</span>
         </button>
         <button className={cx("tab-bar-item")}>
-          <Image src={LikeIcon} alt="" width={20} height={20} />
+          <LikeIcon width={20} height={20} />
           <span>좋아요</span>
         </button>
         <button className={cx("tab-bar-item")}>
-          <Image src={MyIcon} alt="" width={20} height={20} />
+          <MyIcon width={20} height={20} />
           <span>마이</span>
         </button>
       </nav>

@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { CSSProperties, ReactNode } from "react";
 
 import RightIcon from "/public/images/icon-14-chevron-right.svg";
@@ -44,18 +43,18 @@ const Title = ({
       {more && (
         <button onClick={onClick}>
           자세히 보기
-          <Image src={RightIcon} alt="" width={14} height={14} />
+          <RightIcon width={14} height={14} />
         </button>
       )}
       {info && (
         <button onClick={onClick}>
-          <Image src={InfoIcon} alt="" width={18} height={18} />
+          <InfoIcon width={18} height={18} />
         </button>
       )}
       {ad && (
         <button onClick={onClick}>
           AD
-          <Image src={SmallInfoIcon} alt="" width={14} height={14} />
+          <SmallInfoIcon width={14} height={14} />
         </button>
       )}
     </div>

@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { RefObject } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -74,7 +73,7 @@ const TopButton = ({
       }
     >
       <span>위로 이동</span>
-      <Image src={TopIcon} alt="" width={18} height={18} />
+      <TopIcon width={18} height={18} />
     </button>
   );
 };

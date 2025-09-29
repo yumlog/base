@@ -2,13 +2,13 @@
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 400 500 600 800;
-  src: url("/public/fonts/PretendardVariable.woff2") format("woff2-variations");
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
   font-display: swap;
 }
 @font-face {
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 400 500 600 800;
-  src: url("/public//fonts/PretendardVariable.ttf") format("truetype");
+  src: url("/fonts/PretendardVariable.ttf") format("truetype");
   font-display: swap;
 }

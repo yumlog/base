@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { CSSProperties, ReactNode } from "react";
 import React, { useState } from "react";
 
@@ -48,7 +47,7 @@ const TextField: React.FC<TextFieldProps> = ({
             onClick={handleClear}
             className={cx("clear-btn")}
           >
-            <Image src={CancelIcon} alt="" width={24} height={24} />
+            <CancelIcon width={24} height={24} />
           </button>
         )}
       </div>

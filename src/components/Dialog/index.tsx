@@ -1,5 +1,4 @@
 import classNames from "classnames/bind";
-import Image from "next/legacy/image";
 import type { ReactNode } from "react";
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -133,7 +132,7 @@ const Dialog = ({
                     aria-label="뒤로가기"
                     onClick={onClose}
                   >
-                    <Image src={BackIcon} alt="" width={22} height={22} />
+                    <BackIcon width={22} height={22} />
                   </button>
                 )}
                 {info && (
@@ -142,7 +141,7 @@ const Dialog = ({
                     aria-label="안내"
                     onClick={onInfo}
                   >
-                    <Image src={InfoIcon} alt="" width={22} height={22} />
+                    <InfoIcon width={22} height={22} />
                   </button>
                 )}
                 {!back && !info && (
@@ -151,7 +150,7 @@ const Dialog = ({
                     onClick={onClose}
                     aria-label="닫기"
                   >
-                    <Image src={CloseIcon} alt="" width={22} height={22} />
+                    <CloseIcon width={22} height={22} />
                   </button>
                 )}
               </>
@@ -161,7 +160,7 @@ const Dialog = ({
                 onClick={onClose}
                 aria-label="닫기"
               >
-                <Image src={CloseIcon} alt="" width={18} height={18} />
+                <CloseIcon width={18} height={18} />
               </button>
             )}
           </header>
