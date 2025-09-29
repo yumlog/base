@@ -2,26 +2,12 @@
   display: flex;
   flex-direction: column;
   height: 100svh;
-
-  &.nopt .content {
-    padding-top: 0;
-  }
-
-  &.nopb .content {
-    padding-bottom: 0;
-  }
-
-  &.flex .content {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 .content {
   flex: 1;
-  padding: 32px 15px 50px;
+  padding: 0 15px;
   overflow-y: auto;
-  transition: all 0.3s ease;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
@@ -53,10 +39,3 @@
   gap: 12px;
   background-color: var(--white);
 }
-
-// .hidden {
-//   .content {
-//     height: calc(100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-//     margin-top: 0;
-//   }
-// }

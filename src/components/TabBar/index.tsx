@@ -27,14 +27,12 @@ const TabBar = ({ scrollTarget, onVisibleChange }: TabBarProps) => {
 
     const handleScroll = () => {
       const currentScrollY = target.scrollTop;
-      const maxScroll = target.scrollHeight - target.clientHeight;
-      const diff = currentScrollY - lastScrollY.current;
 
-      if (diff > 5 || currentScrollY >= maxScroll) {
-        // 아래로 스크롤 하거나 최하단에 도달한 경우
+      if (currentScrollY > lastScrollY.current) {
+        // 아래로 스크롤
         setHidden(true);
         onVisibleChange?.(false);
-      } else if (diff < -5) {
+      } else if (currentScrollY < lastScrollY.current) {
         // 위로 스크롤
         setHidden(false);
         onVisibleChange?.(true);

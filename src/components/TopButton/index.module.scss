@@ -3,13 +3,13 @@
 
   display: flex;
   position: fixed;
-  z-index: 2000;
+  z-index: 500;
   right: 15px;
   bottom: calc(15px + env(safe-area-inset-bottom));
   align-items: center;
   justify-content: center;
   width: 40px;
-  transition: all 0.3s ease;
+  transition: bottom 0.3s ease-in-out;
   border-width: 1px;
   border-style: solid;
   border-radius: 100%;
@@ -36,7 +36,7 @@
     margin: -1px;
     padding: 0;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: inset(50%);
     border: 0;
     white-space: nowrap;
   }

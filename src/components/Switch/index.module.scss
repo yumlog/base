@@ -14,7 +14,7 @@
   .slider {
     position: absolute;
     inset: 0;
-    transition: 0.3s ease;
+    transition: 0.3s ease-in-out;
     border-radius: 34px;
     background-color: var(--gray20);
     cursor: pointer;

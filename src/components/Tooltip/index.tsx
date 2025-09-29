@@ -2,7 +2,6 @@
 
 import classNames from "classnames/bind";
 import React, { useEffect, useRef, useState } from "react";
-import ReactDOM from "react-dom";
 
 import styles from "@/components/Tooltip/index.module.scss";
 
@@ -70,63 +69,57 @@ const Tooltip: React.FC<TooltipProps> = ({
   useEffect(() => {
     if (!mounted || !targetRef.current || !tooltipRef.current) return;
 
+    const targetEl = targetRef.current;
     const tooltipEl = tooltipRef.current;
-    const targetRect = targetRef.current.getBoundingClientRect();
 
-    const updatePosition = () => {
-      const tooltipRect = tooltipEl.getBoundingClientRect();
-      const arrowSize = 6;
-      const totalOffset = offset + arrowSize;
-      const top =
-        position === "top"
-          ? targetRect.top - tooltipRect.height - totalOffset
-          : targetRect.bottom + totalOffset;
-      const left =
-        anchor === "left"
-          ? targetRect.left
-          : anchor === "center"
-          ? targetRect.left + targetRect.width / 2 - tooltipRect.width / 2
-          : targetRect.right - tooltipRect.width;
+    const arrowSize = 6; // 툴팁 화살표 높이
+    const targetHeight = targetEl.offsetHeight;
+    const targetWidth = targetEl.offsetWidth;
+    const tooltipWidth = tooltipEl.offsetWidth;
+    const tooltipHeight = tooltipEl.offsetHeight;
 
-      setStyle({
-        top: top + window.scrollY,
-        left: left + window.scrollX,
-        width: typeof width === "number" ? `${width}px` : width,
-      });
-    };
+    const top =
+      position === "top"
+        ? -tooltipHeight - arrowSize
+        : targetHeight + arrowSize;
 
-    requestAnimationFrame(updatePosition);
+    const left =
+      anchor === "left"
+        ? 0
+        : anchor === "center"
+          ? targetWidth / 2 - tooltipWidth / 2
+          : targetWidth - tooltipWidth;
+
+    setStyle({
+      top,
+      left,
+      width: typeof width === "number" ? `${width}px` : width,
+    });
   }, [mounted, position, anchor, offset, width]);
 
   if (!root) return children;
 
   return (
-    <>
-      {/* wrapper div로 ref와 클릭 처리 */}
-      <div
-        ref={targetRef}
-        onClick={handleClick}
-        style={{ display: "inline-block" }}
-      >
-        {children}
-      </div>
-
-      {mounted &&
-        ReactDOM.createPortal(
-          <div
-            ref={tooltipRef}
-            className={cx("tooltip", position, anchor, {
-              show: visible,
-              hide: !visible,
-              floating,
-            })}
-            style={style}
-          >
-            {content}
-          </div>,
-          root
-        )}
-    </>
+    <div
+      ref={targetRef}
+      className={cx("tooltip-wrapper")}
+      onClick={handleClick}
+    >
+      {children}
+      {mounted && (
+        <div
+          ref={tooltipRef}
+          className={cx("tooltip", position, anchor, {
+            show: visible,
+            hide: !visible,
+            floating,
+          })}
+          style={style}
+        >
+          {content}
+        </div>
+      )}
+    </div>
   );
 };
 

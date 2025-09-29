@@ -1,11 +1,12 @@
 import classNames from "classnames/bind";
 import type { CSSProperties } from "react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import DownIcon from "/public/images/icon-12-chevron-down.svg";
 import CheckIcon from "/public/images/icon-24-check.svg";
 import Dialog from "@/components/Dialog";
 import styles from "@/components/Tabs/index.module.scss";
+import { useLayoutContext } from "@/contexts/LayoutContexts";
 
 const cx = classNames.bind(styles);
 
@@ -31,44 +32,18 @@ const Tabs: React.FC<TabsProps> = ({
   defaultSort,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [headerOn, setHeaderOn] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [sortIndex, setSortIndex] = useState<number>(defaultSort ?? 0);
   const tabsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = tabsRef.current;
-    if (!el) return;
-
-    const inFullscreen = el.closest('[data-dialog-type="fullscreen"]') !== null;
-
-    if (inFullscreen) {
-      setHeaderOn(false);
-      return;
-    }
-
-    const header = document.querySelector("#layout > header");
-    if (!header) return;
-
-    setHeaderOn(header.classList.contains("on"));
-
-    const observer = new MutationObserver(() => {
-      setHeaderOn(header.classList.contains("on"));
-    });
-
-    observer.observe(header, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const { navVisible } = useLayoutContext();
 
   return (
     <>
       <div
         ref={tabsRef}
-        className={cx("tabs-wrap", tabType, { on: headerOn })}
+        className={cx("tabs-wrap", tabType, {
+          on: tabType === "underbar" ? navVisible : false,
+        })}
         style={style}
       >
         <div className={cx("tabs", { inline })}>

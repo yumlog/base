@@ -9,15 +9,13 @@ import styles from "@/components/Layout/index.module.scss";
 import NavigationBar from "@/components/NavigationBar";
 import TabBar from "@/components/TabBar";
 import TopButton from "@/components/TopButton";
+import { LayoutContext } from "@/contexts/LayoutContexts";
 
 const cx = classNames.bind(styles);
 
 interface LayoutProps {
   title?: string;
   children: ReactNode;
-  nopt?: boolean;
-  nopb?: boolean;
-  flex?: boolean;
   hasTabBar?: boolean;
   disabled?: boolean;
   cancelText?: string;
@@ -29,9 +27,6 @@ interface LayoutProps {
 const Layout = ({
   title,
   children,
-  nopt = false,
-  nopb = false,
-  flex = false,
   hasTabBar = true,
   disabled = false,
   cancelText,
@@ -40,8 +35,8 @@ const Layout = ({
   onConfirm,
 }: LayoutProps) => {
   const contentRef = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(true);
-  const lastScrollY = useRef(0);
+  const [navVisible, setNavVisible] = useState(true);
+  const [tabVisible, setTabVisible] = useState(true);
 
   useEffect(() => {
     const target = contentRef.current;
@@ -50,17 +45,16 @@ const Layout = ({
     const handleScroll = () => {
       const currentScrollY = target.scrollTop;
       const maxScroll = target.scrollHeight - target.clientHeight;
-      const diff = currentScrollY - lastScrollY.current;
 
-      if (diff > 5 || currentScrollY >= maxScroll) {
-        // 아래로 스크롤 하거나 최하단에 도달한 경우
-        setVisible(false);
-      } else if (diff < -5) {
-        // 위로 스크롤
-        setVisible(true);
+      if (currentScrollY >= maxScroll) {
+        // 최하단에 도달한 경우
+        setNavVisible(false);
+        setTabVisible(false);
+      } else if (currentScrollY <= 0) {
+        // 최상단에 도달한 경우
+        setNavVisible(false);
+        setTabVisible(false);
       }
-
-      lastScrollY.current = currentScrollY;
     };
 
     target.addEventListener("scroll", handleScroll, { passive: true });
@@ -68,34 +62,38 @@ const Layout = ({
   }, []);
 
   return (
-    <div className={cx("layout", { hidden: !visible, nopt, nopb, flex })}>
-      <NavigationBar
-        title={title}
-        scrollTarget={contentRef}
-        onVisibleChange={setVisible}
-      />
-      <main ref={contentRef} className={cx("content")}>
-        {children}
-      </main>
-      {(cancelText || confirmText) && (
-        <div className={cx("content-btn")}>
-          {confirmText && (
-            <Button onClick={onConfirm} disabled={disabled}>
-              {confirmText}
-            </Button>
-          )}
-          {cancelText && (
-            <Button color="outline" onClick={onCancel} disabled={disabled}>
-              {cancelText}
-            </Button>
-          )}
-        </div>
-      )}
-      {hasTabBar && (
-        <TabBar scrollTarget={contentRef} onVisibleChange={setVisible} />
-      )}
-      <TopButton scrollTarget={contentRef} hasTabBar={visible} />
-    </div>
+    <LayoutContext.Provider
+      value={{ navVisible, tabVisible, setNavVisible, setTabVisible }}
+    >
+      <div className={cx("layout")}>
+        <NavigationBar
+          title={title}
+          scrollTarget={contentRef}
+          onVisibleChange={setNavVisible}
+        />
+        <main id="test" ref={contentRef} className={cx("content")}>
+          {children}
+        </main>
+        {(cancelText || confirmText) && (
+          <div className={cx("content-btn")}>
+            {confirmText && (
+              <Button onClick={onConfirm} disabled={disabled}>
+                {confirmText}
+              </Button>
+            )}
+            {cancelText && (
+              <Button color="outline" onClick={onCancel} disabled={disabled}>
+                {cancelText}
+              </Button>
+            )}
+          </div>
+        )}
+        {hasTabBar && (
+          <TabBar scrollTarget={contentRef} onVisibleChange={setTabVisible} />
+        )}
+        <TopButton scrollTarget={contentRef} hasTabBar={tabVisible} />
+      </div>
+    </LayoutContext.Provider>
   );
 };
 

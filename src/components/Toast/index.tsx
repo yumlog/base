@@ -10,6 +10,7 @@ import React, {
 import { createPortal } from "react-dom";
 
 import styles from "@/components/Toast/index.module.scss";
+import { useLayoutContext } from "@/contexts/LayoutContexts";
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +39,7 @@ const Toast = forwardRef<ToastHandle, ToastProps>(
       undefined
     );
     const timerRef = useRef<number | null>(null);
+    const { tabVisible } = useLayoutContext();
 
     // 브라우저에서만 root 가져오기
     useEffect(() => {
@@ -99,7 +101,11 @@ const Toast = forwardRef<ToastHandle, ToastProps>(
     return createPortal(
       <div
         className={cx("toast", { show: visible, hide: !visible, small })}
-        style={{ bottom: `${sheet ? sheetBottom : bottom ?? 15}px` }}
+        style={{
+          bottom: `${
+            sheet ? sheetBottom : tabVisible === true ? 65 : (bottom ?? 15)
+          }px`,
+        }}
       >
         <p>{children}</p>
         {btnText && <button onClick={onClick}>{btnText}</button>}

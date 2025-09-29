@@ -47,6 +47,8 @@ const TestPage = () => {
 
   return (
     <>
+      <div style={{ height: 80 }} />
+
       <section>
         <Title title="Button" />
         <div className="flex flex-col gap-y-2">
@@ -108,7 +110,7 @@ const TestPage = () => {
         </div>
       </section>
 
-      <section>
+      <section className="inline">
         <Title title="Tabs" />
         <Tabs
           tabType="underbar"
@@ -152,6 +154,8 @@ const TestPage = () => {
           클릭하면 툴팁이 떠요
         </Tooltip>
       </section>
+
+      <div style={{ height: 100 }} />
 
       {fullDialog}
       {bottomSheet}

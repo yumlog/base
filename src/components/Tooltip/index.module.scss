@@ -4,7 +4,7 @@
   }
 
   50% {
-    transform: translateY(-8px);
+    transform: translateY(var(--tooltip-distance));
   }
 
   100% {
@@ -12,9 +12,15 @@
   }
 }
 
+.tooltip-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
 .tooltip {
   position: absolute;
   z-index: 1000;
+  width: max-content;
   padding: 10px 12px;
   transition: opacity 0.3s ease-in-out;
   border-radius: 4px;
@@ -33,6 +39,8 @@
   }
 
   &.top {
+    --tooltip-distance: -8px;
+
     transform-origin: bottom center;
 
     &::after {
@@ -42,6 +50,8 @@
   }
 
   &.bottom {
+    --tooltip-distance: 8px;
+
     transform-origin: top center;
 
     &::after {
