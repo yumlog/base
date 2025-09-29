@@ -1,6 +1,7 @@
 "use client";
 
 import classNames from "classnames/bind";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 
@@ -10,13 +11,12 @@ import NavigationBar from "@/components/NavigationBar";
 import TabBar from "@/components/TabBar";
 import TopButton from "@/components/TopButton";
 import { LayoutContext } from "@/contexts/LayoutContexts";
+import { PageSettings } from "@/contexts/LayoutContexts";
 
 const cx = classNames.bind(styles);
 
 interface LayoutProps {
-  title?: string;
   children: ReactNode;
-  hasTabBar?: boolean;
   disabled?: boolean;
   cancelText?: string;
   confirmText?: string;
@@ -25,9 +25,7 @@ interface LayoutProps {
 }
 
 const Layout = ({
-  title,
   children,
-  hasTabBar = true,
   disabled = false,
   cancelText,
   confirmText,
@@ -37,6 +35,10 @@ const Layout = ({
   const contentRef = useRef<HTMLElement>(null);
   const [navVisible, setNavVisible] = useState(true);
   const [tabVisible, setTabVisible] = useState(true);
+  const pathname = usePathname();
+  const PageSetting = PageSettings[pathname];
+  const title = PageSetting?.title || "base";
+  const hasTabBar = PageSetting?.tabVisible ?? true;
 
   useEffect(() => {
     const target = contentRef.current;
@@ -71,8 +73,8 @@ const Layout = ({
           scrollTarget={contentRef}
           onVisibleChange={setNavVisible}
         />
-        <main id="test" ref={contentRef} className={cx("content")}>
-          {children}
+        <main ref={contentRef} className={cx("content-wrap")}>
+          <div className={cx("content")}>{children}</div>
         </main>
         {(cancelText || confirmText) && (
           <div className={cx("content-btn")}>

@@ -47,7 +47,24 @@ const TestPage = () => {
 
   return (
     <>
-      <div style={{ height: 80 }} />
+      <section className="inline">
+        <Title title="Tabs" />
+        <Tabs
+          tabType="underbar"
+          tabTitles={["탭1", "탭2", "탭3"]}
+          tabContents={["탭1 컨텐츠", "탭2 컨텐츠", "탭3 컨텐츠"]}
+        />
+        <Tabs
+          tabType="block"
+          tabTitles={["탭1", "탭2"]}
+          tabContents={["탭1 컨텐츠", "탭2 컨텐츠"]}
+        />
+        <Tabs
+          tabType="chip"
+          tabTitles={["탭1", "탭2", "탭3"]}
+          tabContents={["탭1 컨텐츠", "탭2 컨텐츠", "탭3 컨텐츠"]}
+        />
+      </section>
 
       <section>
         <Title title="Button" />
@@ -110,25 +127,6 @@ const TestPage = () => {
         </div>
       </section>
 
-      <section className="inline">
-        <Title title="Tabs" />
-        <Tabs
-          tabType="underbar"
-          tabTitles={["탭1", "탭2", "탭3"]}
-          tabContents={["탭1 컨텐츠", "탭2 컨텐츠", "탭3 컨텐츠"]}
-        />
-        <Tabs
-          tabType="block"
-          tabTitles={["탭1", "탭2"]}
-          tabContents={["탭1 컨텐츠", "탭2 컨텐츠"]}
-        />
-        <Tabs
-          tabType="chip"
-          tabTitles={["탭1", "탭2", "탭3"]}
-          tabContents={["탭1 컨텐츠", "탭2 컨텐츠", "탭3 컨텐츠"]}
-        />
-      </section>
-
       <section>
         <Title title="TextField" />
         <TextField
@@ -154,8 +152,6 @@ const TestPage = () => {
           클릭하면 툴팁이 떠요
         </Tooltip>
       </section>
-
-      <div style={{ height: 100 }} />
 
       {fullDialog}
       {bottomSheet}

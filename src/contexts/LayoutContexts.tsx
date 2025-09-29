@@ -13,3 +13,14 @@ export const LayoutContext = createContext<LayoutContextType>({
 });
 
 export const useLayoutContext = () => useContext(LayoutContext);
+
+export interface PageSettings {
+  title: string;
+  navVisible?: boolean;
+  tabVisible?: boolean;
+}
+
+export const PageSettings: Record<string, PageSettings> = {
+  "/": { title: "홈", tabVisible: false },
+  "/pages/test": { title: "테스트 페이지" },
+};
