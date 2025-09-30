@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 interface DialogProps {
   isOpen: boolean;
   onClose: () => void;
-  type?: "bottomsheet" | "fullscreen";
+  type?: "bottomsheet" | "fullscreen" | "modal";
   title?: ReactNode;
   children: ReactNode;
   border?: boolean;
@@ -102,7 +102,7 @@ const Dialog = ({
 
   return createPortal(
     <div className={cx("dialog-wrapper")} style={{ zIndex }}>
-      {type === "bottomsheet" && (
+      {type !== "fullscreen" && (
         <div
           className={cx("backdrop", { open: animateOpen })}
           onClick={onClose}
@@ -112,7 +112,7 @@ const Dialog = ({
         data-dialog-type={type}
         data-dialog-open={animateOpen ? "1" : "0"}
         className={cx("dialog", type, {
-          open: animateOpen && type === "bottomsheet",
+          open: animateOpen && type !== "fullscreen",
           border,
           nopt,
           nopb,

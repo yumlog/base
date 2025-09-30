@@ -4,12 +4,11 @@
   top: 0;
   right: 0;
   left: 0;
-  transform: translateY(0);
-  transition: transform 0.3s ease-in-out;
+  transition: top 0.3s ease-in-out;
   background-color: var(--white);
 
   &.hidden {
-    transform: translateY(-100%);
+    top: -48px;
   }
 }
 

@@ -20,6 +20,7 @@ const TestPage = () => {
   const toastRef2 = useRef<ToastHandle>(null);
   const [fullOpen, setFullOpen] = useState(false);
   const [bottomOpen, setBottomOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fullDialog = (
     <Dialog
@@ -41,8 +42,8 @@ const TestPage = () => {
       isOpen={bottomOpen}
       onCancel={() => setBottomOpen(false)}
       onClose={() => setBottomOpen(false)}
-      cancelText="나가기"
-      confirmText="추가하기"
+      cancelText="취소"
+      confirmText="확인"
       onConfirm={() => toastRef2.current?.show()}
       zIndex={1010}
     >
@@ -50,6 +51,22 @@ const TestPage = () => {
       <Toast ref={toastRef2} small sheet>
         바텀시트용 토스트가 짠
       </Toast>
+    </Dialog>
+  );
+
+  const modalDialog = (
+    <Dialog
+      type="modal"
+      title="모달"
+      isOpen={modalOpen}
+      onCancel={() => setModalOpen(false)}
+      onClose={() => setModalOpen(false)}
+      cancelText="취소"
+      confirmText="확인"
+      onConfirm={() => toastRef2.current?.show()}
+      zIndex={1010}
+    >
+      <p>모달입니당~</p>
     </Dialog>
   );
 
@@ -72,6 +89,7 @@ const TestPage = () => {
           tabType="underbar"
           tabTitles={["탭1", "탭2", "탭3"]}
           tabContents={["탭1 컨텐츠", "탭2 컨텐츠", "탭3 컨텐츠"]}
+          sticky
         />
         <Tabs
           tabType="block"
@@ -109,6 +127,7 @@ const TestPage = () => {
           <span onClick={() => setBottomOpen(true)}>
             클릭하면 바텀시트가 떠요
           </span>
+          <span onClick={() => setModalOpen(true)}>클릭하면 모달이 떠요</span>
         </div>
       </section>
 
@@ -174,6 +193,7 @@ const TestPage = () => {
 
       {fullDialog}
       {bottomSheet}
+      {modalDialog}
     </Layout>
   );
 };

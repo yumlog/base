@@ -118,6 +118,48 @@
   }
 }
 
+.dialog.modal {
+  top: 50%;
+  left: 50%;
+  width: max-content;
+  min-width: 290px;
+  max-width: calc(100vw - 30px);
+  max-height: calc(100svh - 30px);
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: all 0.3s ease-in-out;
+  border-radius: 18px;
+  opacity: 0;
+
+  &.open {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  .dialog-header {
+    justify-content: space-between;
+    gap: 12px;
+    padding: 19px 15px;
+
+    h2 {
+      flex: 1;
+      font-size: 18px;
+    }
+
+    button {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .dialog-content {
+    padding: 8px 15px 32px;
+
+    &.scroll {
+      padding-bottom: 64px;
+    }
+  }
+}
+
 .dialog.nopt {
   .dialog-content {
     padding-top: 0;

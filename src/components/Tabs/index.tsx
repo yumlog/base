@@ -11,7 +11,7 @@ import { useLayoutContext } from "@/contexts/LayoutContexts";
 const cx = classNames.bind(styles);
 
 interface TabsProps {
-  tabType?: "underbar" | "block" | "chip" | "chip-sticky";
+  tabType?: "underbar" | "block" | "chip";
   tabTitles: string[];
   tabContents: React.ReactNode[];
   inline?: boolean;
@@ -19,6 +19,7 @@ interface TabsProps {
   sortTitle?: string;
   sortOptions?: string[];
   defaultSort?: number;
+  sticky?: boolean;
 }
 
 const Tabs: React.FC<TabsProps> = ({
@@ -30,6 +31,7 @@ const Tabs: React.FC<TabsProps> = ({
   sortTitle,
   sortOptions,
   defaultSort,
+  sticky = false,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -42,44 +44,43 @@ const Tabs: React.FC<TabsProps> = ({
       <div
         ref={tabsRef}
         className={cx("tabs-wrap", tabType, {
-          on: tabType === "underbar" ? navVisible : false,
+          sticky,
+          on: navVisible,
         })}
         style={style}
       >
         <div className={cx("tabs", { inline })}>
-          {(tabType === "chip" || tabType === "chip-sticky") &&
-            sortTitle &&
-            sortOptions && (
-              <>
-                <button
-                  className={cx("sort-chip")}
-                  onClick={() => setDialogOpen(true)}
-                >
-                  {sortOptions[sortIndex]}
-                  <DownIcon width={12} height={12} />
-                </button>
-                <Dialog
-                  title={sortTitle}
-                  isOpen={dialogOpen}
-                  onClose={() => setDialogOpen(false)}
-                >
-                  <ul className={cx("sort-list")}>
-                    {sortOptions.map((option, idx) => (
-                      <li
-                        key={idx}
-                        className={cx({ active: sortIndex === idx })}
-                        onClick={() => setSortIndex(idx)}
-                      >
-                        <span className={cx("option")}>{option}</span>
-                        {sortIndex === idx && (
-                          <CheckIcon width={24} height={24} />
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </Dialog>
-              </>
-            )}
+          {tabType === "chip" && sortTitle && sortOptions && (
+            <>
+              <button
+                className={cx("sort-chip")}
+                onClick={() => setDialogOpen(true)}
+              >
+                {sortOptions[sortIndex]}
+                <DownIcon width={12} height={12} />
+              </button>
+              <Dialog
+                title={sortTitle}
+                isOpen={dialogOpen}
+                onClose={() => setDialogOpen(false)}
+              >
+                <ul className={cx("sort-list")}>
+                  {sortOptions.map((option, idx) => (
+                    <li
+                      key={idx}
+                      className={cx({ active: sortIndex === idx })}
+                      onClick={() => setSortIndex(idx)}
+                    >
+                      <span className={cx("option")}>{option}</span>
+                      {sortIndex === idx && (
+                        <CheckIcon width={24} height={24} />
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </Dialog>
+            </>
+          )}
           {tabTitles.map((title, index) => {
             if (tabType === "underbar") {
               return (
