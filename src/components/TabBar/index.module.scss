@@ -4,14 +4,15 @@
   right: 0;
   bottom: 0;
   left: 0;
-  transition: bottom 0.3s ease-in-out;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
   border-top-width: 1px;
   border-top-style: solid;
   border-color: var(--gray10);
   background-color: var(--white);
 
   &.hidden {
-    bottom: -50px;
+    transform: translateY(100%);
   }
 }
 

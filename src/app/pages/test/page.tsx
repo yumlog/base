@@ -17,6 +17,7 @@ import Tooltip from "@/components/Tooltip";
 
 const TestPage = () => {
   const toastRef = useRef<ToastHandle>(null);
+  const toastRef2 = useRef<ToastHandle>(null);
   const [fullOpen, setFullOpen] = useState(false);
   const [bottomOpen, setBottomOpen] = useState(false);
 
@@ -42,11 +43,11 @@ const TestPage = () => {
       onClose={() => setBottomOpen(false)}
       cancelText="나가기"
       confirmText="추가하기"
-      onConfirm={() => toastRef.current?.show()}
+      onConfirm={() => toastRef2.current?.show()}
       zIndex={1010}
     >
       바텀시트입니당~
-      <Toast ref={toastRef} small sheet>
+      <Toast ref={toastRef2} small sheet>
         바텀시트용 토스트가 짠
       </Toast>
     </Dialog>
