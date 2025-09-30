@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 
 import Button from "@/components/Button";
 import Dialog from "@/components/Dialog";
+import Layout from "@/components/Layout";
 import NotFound from "@/components/NotFound";
 import Skeleton from "@/components/Skeleton";
 import Switch from "@/components/Switch";
@@ -25,6 +26,8 @@ const TestPage = () => {
       title="풀스크린"
       nopt
       isOpen={fullOpen}
+      confirmText="확인"
+      cancelText="취소"
       onClose={() => setFullOpen(false)}
     >
       풀스크린입니당~
@@ -39,14 +42,29 @@ const TestPage = () => {
       onClose={() => setBottomOpen(false)}
       cancelText="나가기"
       confirmText="추가하기"
+      onConfirm={() => toastRef.current?.show()}
       zIndex={1010}
     >
       바텀시트입니당~
+      <Toast ref={toastRef} small sheet>
+        바텀시트용 토스트가 짠
+      </Toast>
     </Dialog>
   );
 
   return (
-    <>
+    <Layout>
+      <section>
+        <Title title="Title" />
+        <Title
+          title="제목과 설명이 있음"
+          description="설명은 이렇게 생겼어요"
+        />
+        <Title title="제목과 더보기가 있음" more />
+        <Title title="제목과 인포가 있음" info />
+        <Title title="제목과 광고가 있음" ad />
+      </section>
+
       <section className="inline">
         <Title title="Tabs" />
         <Tabs
@@ -155,7 +173,7 @@ const TestPage = () => {
 
       {fullDialog}
       {bottomSheet}
-    </>
+    </Layout>
   );
 };
 

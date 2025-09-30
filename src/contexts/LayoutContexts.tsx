@@ -22,5 +22,5 @@ export interface PageSettings {
 
 export const PageSettings: Record<string, PageSettings> = {
   "/": { title: "홈", tabVisible: false },
-  "/pages/test": { title: "테스트 페이지" },
+  "/pages/test": { title: "컴포넌트" },
 };
